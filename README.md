@@ -1,2 +1,2 @@
 # Wheel-of-Fortune
-A recreation of one round of the classic game show Wheel of Fortune.
+A recreation of one round of the classic game show Wheel of Fortune. This is a program of my own design and build, taking all the elements I have been learning through OOP classes to date. I also incorporated a couple of new (to me) concepts that I worked through and figured out in using an array of objects and using static variables in objects. Included is a .dat file which contains several puzzles that auto-loads in the program, and needs to be included in the workspace folder of the program in the IDE.
