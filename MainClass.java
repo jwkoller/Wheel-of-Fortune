@@ -143,8 +143,7 @@ public class MainClass
 				players[0].setResetPlayerCash();
 				players[1].setResetPlayerCash();
 				players[2].setResetPlayerCash();
-			}
-			
+			}	
 		}	//end of run while not quit
 		
 		displayFarewellBanner();
@@ -253,7 +252,7 @@ public class MainClass
 		System.out.println();
 		while(localIndex < borrowedPuzzle.length)
 		{
-			if(localIndex > LINE_LENGTH_CUTOFF && borrowedPuzzle[localIndex] == '_' && borrowedPuzzle.length - localIndex > 5)
+			if(localIndex > LINE_LENGTH_CUTOFF && borrowedPuzzle[localIndex] == ' ' && borrowedPuzzle.length - localIndex > 5)
 			{
 				System.out.println();
 			}
@@ -462,7 +461,6 @@ public class MainClass
 		System.out.println("Congratulations to " + localWinner + "! They are today's game");
 		System.out.println("winner with $" + localWinnerCash +"!");
 		System.out.println("************************************************************");
-		
 	}
 	
 }	//end of MainClass
