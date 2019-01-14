@@ -8,9 +8,9 @@ public class Players
 	private String playerName = "";
 	private int playerCash = 0;
 	
-	public void setPlayerName(String borrowedPlayerName)
+	public Players(String borrowedName)
 	{
-		playerName = borrowedPlayerName;
+		playerName = borrowedName;
 	}
 	
 	public void setPlayerCash(int borrowedWheelResult, int borrowedCorrectLetters)

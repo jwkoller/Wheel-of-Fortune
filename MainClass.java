@@ -27,9 +27,6 @@ public class MainClass
 		GameWheel gameWheel = new GameWheel();
 		Puzzle puzzle = new Puzzle();
 		Players[] players = new Players[NUMBER_OF_PLAYERS];
-		players[0] = new Players();
-		players[1] = new Players();
-		players[2] = new Players();
 		
 		displayWelcomeBanner();
 		puzzle.setLoadPuzzleFile();
@@ -42,12 +39,11 @@ public class MainClass
 			}
 			else
 			{
-				while(players[NUMBER_OF_PLAYERS - 1].getPlayerName().equals(""))
+				for(int index = 0; index < players.length; index++)
 				{
-					players[Players.getPlayerTurn()].setPlayerName(validatePlayerName(input, Players.getPlayerTurn()));
+					players[index] = new Players(validatePlayerName(input, Players.getPlayerTurn()));
 					Players.setPlayerTurn();
 				}
-				
 				puzzle.setCurrentPuzzle();
 
 				while(puzzle.getSolveAttemptResult() == false)
