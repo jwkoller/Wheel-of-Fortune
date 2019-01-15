@@ -22,16 +22,13 @@ public class Puzzle
 	
 	public void setLoadPuzzleFile()
 	{
-		counters[0] = RESET_VALUE;
-		
 		try
 		{
 			Scanner puzzleFile = new Scanner(new FileInputStream(PUZZLE_FILE));
 			
-			for(int localIndex = 0; puzzleFile.hasNext() && localIndex < OPTIONS_SIZE; localIndex++)
+			for(counters[0] = RESET_VALUE; puzzleFile.hasNext() && counters[0] < OPTIONS_SIZE; counters[0]++)
 			{
-				puzzleOptions[localIndex] = puzzleFile.next();
-				counters[0]++;
+				puzzleOptions[counters[0]] = puzzleFile.next();
 			}
 			puzzleFile.close();
 		}
@@ -44,6 +41,7 @@ public class Puzzle
 	public void setCurrentPuzzle()
 	{
 		currentPuzzleArray[0] = puzzleOptions[getRandomNG()].replaceAll("_", " ").toCharArray();
+		letterIndexLocations = new int[currentPuzzleArray[0].length];
 		counters[2] = RESET_VALUE;
 		setHiddenPuzzle();
 	}
@@ -67,17 +65,7 @@ public class Puzzle
 	
 	public void setLetterSearch(String borrowedLetter)
 	{
-		counters[1] = RESET_VALUE;
-		letterIndexLocations = new int[currentPuzzleArray[0].length];
-		
-		for(int localIndex = 0; localIndex < counters[2]; localIndex++)
-		{
-			if(borrowedLetter.equalsIgnoreCase(usedLetters[localIndex]))
-			{
-				counters[1] = -1;
-				localIndex = counters[2];
-			}
-		}
+		counters[1] = getUsedLetterSearchResult(borrowedLetter);
 		
 		if(counters[1] == 0)
 		{
@@ -119,6 +107,20 @@ public class Puzzle
 		return solveAttempt.equalsIgnoreCase(String.valueOf(currentPuzzleArray[0]));
 	}
 	
+	public int getUsedLetterSearchResult(String borrowedLetter)
+	{
+		int localFound = 0;
+		
+		for(int localIndex = 0; localIndex < counters[2]; localIndex++)
+		{
+			if(borrowedLetter.equalsIgnoreCase(usedLetters[localIndex]))
+			{
+				localFound = -1;
+				localIndex = counters[2];
+			}
+		}	
+		return localFound;
+	}
 	
 	public int getRandomNG()
 	{
