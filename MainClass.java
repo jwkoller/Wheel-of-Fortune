@@ -26,7 +26,7 @@ public class MainClass
 		Scanner input = new Scanner(System.in);
 		GameWheel gameWheel = new GameWheel();
 		Puzzle puzzle = new Puzzle();
-		Players[] players = new Players[NUMBER_OF_PLAYERS];
+		Players[] players;
 		
 		displayWelcomeBanner();
 		puzzle.setLoadPuzzleFile();
@@ -39,11 +39,8 @@ public class MainClass
 			}
 			else
 			{
-				for(int index = 0; index < players.length; index++)
-				{
-					players[index] = new Players(validatePlayerName(input, Players.getPlayerTurn()));
-					Players.setPlayerTurn();
-				}
+				players = newPlayers(input);
+
 				puzzle.setCurrentPuzzle();
 
 				while(puzzle.getSolveAttemptResult() == false)
@@ -136,9 +133,6 @@ public class MainClass
 				displayGameWinner(players[0].getPlayerName(), players[0].getPlayerCash(), players[1].getPlayerName(), players[1].getPlayerCash(),
 						players[2].getPlayerName(), players[2].getPlayerCash());
 				Players.setResetPlayerTurn();
-				players[0].setResetPlayerCash();
-				players[1].setResetPlayerCash();
-				players[2].setResetPlayerCash();
 			}	
 		}	//end of run while not quit
 		
@@ -146,6 +140,18 @@ public class MainClass
 		
 	}	//end of main method
 
+	public static Players[] newPlayers(Scanner input)
+	{
+		Players[] players = new Players[NUMBER_OF_PLAYERS];
+		
+		for(int index = 0; index < players.length; index++)
+		{
+			players[index] = new Players(validatePlayerName(input, Players.getPlayerTurn()));
+			Players.setPlayerTurn();
+		}
+		
+		return players;
+	}
 	public static void displayWelcomeBanner()
 	{
 		System.out.println("************************************************************");
